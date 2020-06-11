@@ -1,5 +1,5 @@
 # parking-automata-asm
- A program to control a parking lot with the help of PIC microcontrollers programmed in Assembly Language
+ A program to simulate the control of a parking lot with the help of PIC microcontrollers programmed in assembly language
 # Compilación
  Éste programa fué desarrollado con ayuda del IDE MPLAB, para compilarlo (El archivo ProgramaAutomata.asm) se necesita ése IDE y 
  agregarle las librerías del microcontrolador que se desea ocupar, de lo contrario marcará un error.
