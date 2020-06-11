@@ -16,4 +16,5 @@
   el automovil se coloca sobre la salida y la pluma de la salida se abre y después se cierra, una vez que se cierra la pluma de la salida
   se incrementa el contador de espacios en el estacionamiento.
   Si el estacionamiento se llena la pluma de entrada no se abrira de forma que no entre otro automovil.
-  
+  La detección del automóvil puede hacerse con sensores inductivos o de presión sobre una plataforma, al final de cuentas se necesita que
+  se manden pulsos (1 o 0) para indicar si se acerca un auto a la entrada o salida, en la simulación  se representan mediante switches en   donde, 1 significa que se acercó un automovil a la entrada o salida y 0 significa que no (típico sistema binario).
