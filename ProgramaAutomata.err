@@ -1,0 +1,9 @@
+Warning[205] C:\USERS\SAAII\DESKTOP\AUTOMATA\PROGRAMAAUTOMATA.ASM 1 : Found directive in column 1. (__CONFIG)
+Warning[205] C:\USERS\SAAII\DESKTOP\AUTOMATA\PROGRAMAAUTOMATA.ASM 2 : Found directive in column 1. (LIST)
+Warning[205] C:\USERS\SAAII\DESKTOP\AUTOMATA\PROGRAMAAUTOMATA.ASM 3 : Found directive in column 1. (INCLUDE)
+Message[301] C:\PROGRAM FILES (X86)\MICROCHIP\MPASM SUITE\P16F84.INC 33 : MESSAGE: (Processor-header file mismatch.  Verify selected processor.)
+Warning[205] C:\USERS\SAAII\DESKTOP\AUTOMATA\PROGRAMAAUTOMATA.ASM 4 : Found directive in column 1. (ORG)
+Warning[203] C:\USERS\SAAII\DESKTOP\AUTOMATA\PROGRAMAAUTOMATA.ASM 5 : Found opcode in column 1. (GOTO)
+Warning[205] C:\USERS\SAAII\DESKTOP\AUTOMATA\PROGRAMAAUTOMATA.ASM 6 : Found directive in column 1. (ORG)
+Message[305] C:\USERS\SAAII\DESKTOP\AUTOMATA\PROGRAMAAUTOMATA.ASM 74 : Using default destination of 1 (file).
+Message[305] C:\USERS\SAAII\DESKTOP\AUTOMATA\PROGRAMAAUTOMATA.ASM 108 : Using default destination of 1 (file).

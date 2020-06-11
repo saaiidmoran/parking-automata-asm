@@ -1,0 +1,82 @@
+MPLINK 4.49, Linker
+Linker Map File - Created Tue Jun 06 23:02:55 2017
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000000
+                   .org_1       code   0x000000    program   0x000002
+                   .org_2       code   0x000006    program   0x0000dc
+.config_2007_PROGRAMAAUTOMATA.O       code   0x002007    program   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000000      
+                            0x000006    0x000073      
+                            0x002007    0x002007      
+            112 out of 1094 program addresses used, program memory utilization is 10%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+               BAJAPLUMA1   0x000033    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+               BAJAPLUMA2   0x00004a    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+             CHECAENTRADA   0x000024    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+              CHECASALIDA   0x00003b    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+             CHECASIBAJA1   0x00002a    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+             CHECASIBAJA2   0x000041    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+             CHECASISUBE1   0x000027    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+             CHECASISUBE2   0x00003e    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+                    CICLO   0x00005f    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+                   CICLO2   0x00005d    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+                   CICLO3   0x00005b    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+                   CICLO4   0x000059    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+           DISPONIBILIDAD   0x000019    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+              DISPONIBLES   0x00001e    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+                   INICIO   0x000006    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+            NODISPONIBLES   0x000021    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+                   REPITE   0x00006a    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+                  RETARDO   0x000057    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+               SUBEPLUMA1   0x00002d    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+               SUBEPLUMA2   0x000044    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+                   TIEMPO   0x000068    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+                Timer50MS   0x00006e    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+                  deccont   0x000055    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+                   seguir   0x000070    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                   INICIO   0x000006    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+           DISPONIBILIDAD   0x000019    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+              DISPONIBLES   0x00001e    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+            NODISPONIBLES   0x000021    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+             CHECAENTRADA   0x000024    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+             CHECASISUBE1   0x000027    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+             CHECASIBAJA1   0x00002a    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+               SUBEPLUMA1   0x00002d    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+               BAJAPLUMA1   0x000033    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+              CHECASALIDA   0x00003b    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+             CHECASISUBE2   0x00003e    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+             CHECASIBAJA2   0x000041    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+               SUBEPLUMA2   0x000044    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+               BAJAPLUMA2   0x00004a    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+                  deccont   0x000055    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+                  RETARDO   0x000057    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+                   CICLO4   0x000059    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+                   CICLO3   0x00005b    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+                   CICLO2   0x00005d    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+                    CICLO   0x00005f    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+                   TIEMPO   0x000068    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+                   REPITE   0x00006a    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+                Timer50MS   0x00006e    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+                   seguir   0x000070    program     static C:\Users\saaii\Desktop\Automata\ProgramaAutomata.asm
+
+

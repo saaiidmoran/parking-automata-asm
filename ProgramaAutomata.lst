@@ -1,0 +1,351 @@
+MPASM  5.51              PROGRAMAAUTOMATA.ASM   6-6-2017  23:02:52         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Warning[205]: Found directive in column 1. (__CONFIG)
+2007   3FF1           00001 __CONFIG _CP_OFF&_WDT_OFF&_PWRTE_ON&_XT_OSC
+Warning[205]: Found directive in column 1. (LIST)
+                      00002 LIST P=PIC16F84A
+Warning[205]: Found directive in column 1. (INCLUDE)
+                      00003 INCLUDE <P16F84.INC>
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ;  MPASM PIC16F84 processor include
+                      00005 ; 
+                      00006 ;  (c) Copyright 1999-2013 Microchip Technology, All rights reserved
+                      00007 ;==========================================================================
+                      00008 
+Message[301]: MESSAGE: (Processor-header file mismatch.  Verify selected processor.)
+                      00206         LIST
+Warning[205]: Found directive in column 1. (ORG)
+0000                  00004 ORG 0
+Warning[203]: Found opcode in column 1. (GOTO)
+0000   2806           00005 GOTO INICIO
+Warning[205]: Found directive in column 1. (ORG)
+0006                  00006 ORG 6
+                      00007 
+  00000022            00008 Contador                EQU                     22H
+  00000023            00009 Indicador               EQU                     23H
+  00000024            00010 UNSEGUNDO               EQU                     24H
+  00000026            00011 CONT    EQU       26H   
+  00000027            00012 CONT2   EQU   27H   
+  00000028            00013 CONT3   EQU   28H
+  00000029            00014 CONT4   EQU   29H
+                      00015 
+0006   1683           00016 INICIO  bsf             0x03,5;banco 1
+0007   1405           00017                 bsf             0x05,0;Entrada
+0008   1485           00018                 bsf             0x05,1;Salida
+0009   1105           00019                 bcf             0x05,2
+000A   1185           00020                 bcf             0x05,3
+000B   1106           00021                 bcf             0x06,2
+000C   1186           00022                 bcf             0x06,3
+000D   1206           00023                 bcf             0x06,4
+000E   1286           00024                 bcf             0x06,5
+000F   3007           00025                 movlw   b'00000111'
+0010   0081           00026                 movwf   0x01                            ;FUNCION PARA EL TIMER
+0011   1283           00027                 bcf             0x03,5;banco 0
+0012   01A2           00028                 clrf    Contador
+0013   300A           00029                 movlw   b'00001010'     
+0014   00A3           00030                 movwf   Indicador
+                      00031                 
+0015   1106           00032                 bcf             0x06,2
+0016   1186           00033                 bcf             0x06,3
+0017   1206           00034                 bcf             0x06,4
+0018   1286           00035                 bcf             0x06,5
+                      00036 
+0019   300C           00037 DISPONIBILIDAD  MOVLW   .12
+MPASM  5.51              PROGRAMAAUTOMATA.ASM   6-6-2017  23:02:52         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+001A   0622           00038                                 XORWF   Contador,W
+001B   1903           00039                                 BTFSC   0X03,2
+001C   2821           00040                                 GOTO    NODISPONIBLES
+001D   281E           00041                                 GOTO    DISPONIBLES
+001E   1505           00042 DISPONIBLES             BSF             0X05,2
+001F   1185           00043                                 BCF             0X05,3
+0020   2824           00044                                 GOTO    CHECAENTRADA
+0021   1105           00045 NODISPONIBLES   BCF             0X05,2
+0022   1585           00046                                 BSF             0X05,3
+0023   283B           00047                                 GOTO    CHECASALIDA
+                      00048 
+0024   1805           00049 CHECAENTRADA    BTFSC   0X05,0
+0025   2827           00050                                 GOTO    CHECASISUBE1
+0026   282A           00051                                 GOTO    CHECASIBAJA1    
+                      00052 
+0027   1823           00053 CHECASISUBE1    BTFSC   Indicador,0
+0028   283B           00054                                 GOTO    CHECASALIDA
+0029   282D           00055                                 GOTO    SUBEPLUMA1
+                      00056 
+002A   1CA3           00057 CHECASIBAJA1    BTFSS   Indicador,1
+002B   2833           00058                                 GOTO    BAJAPLUMA1
+002C   283B           00059                                 GOTO    CHECASALIDA
+                      00060 
+002D   1506           00061 SUBEPLUMA1              BSF             0X06,2
+002E   2068           00062                                 CALL    TIEMPO
+002F   1106           00063                                 BCF             0X06,2
+0030   1423           00064                                 BSF             Indicador,0
+0031   10A3           00065                                 BCF             Indicador,1
+0032   283B           00066                                 GOTO    CHECASALIDA
+                      00067 
+0033   2057           00068 BAJAPLUMA1              CALL    RETARDO
+0034   1586           00069                                 BSF             0X06,3
+0035   2068           00070                                 CALL    TIEMPO
+0036   1186           00071                                 BCF             0X06,3
+0037   1023           00072                                 BCF             Indicador,0
+0038   14A3           00073                                 BSF             Indicador,1
+Message[305]: Using default destination of 1 (file).
+0039   0AA2           00074                                 INCF    Contador
+003A   283B           00075                                 GOTO    CHECASALIDA
+                      00076 
+003B   1885           00077 CHECASALIDA             BTFSC   0X05,1
+003C   283E           00078                                 GOTO    CHECASISUBE2
+003D   2841           00079                                 GOTO    CHECASIBAJA2
+                      00080 
+003E   1923           00081 CHECASISUBE2    BTFSC   Indicador,2
+003F   2819           00082                                 GOTO    DISPONIBILIDAD
+0040   2844           00083                                 GOTO    SUBEPLUMA2
+                      00084 
+0041   1DA3           00085 CHECASIBAJA2    BTFSS   Indicador,3
+0042   284A           00086                                 GOTO    BAJAPLUMA2
+0043   2819           00087                                 GOTO    DISPONIBILIDAD  
+                      00088 
+0044   1606           00089 SUBEPLUMA2              BSF             0X06,4
+MPASM  5.51              PROGRAMAAUTOMATA.ASM   6-6-2017  23:02:52         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0045   2068           00090                                 CALL    TIEMPO
+0046   1206           00091                                 BCF             0X06,4
+0047   1523           00092                                 BSF             Indicador,2
+0048   11A3           00093                                 BCF             Indicador,3
+0049   2819           00094                                 GOTO    DISPONIBILIDAD
+                      00095 
+004A   2057           00096 BAJAPLUMA2              CALL    RETARDO
+004B   1686           00097                                 BSF             0X06,5
+004C   2068           00098                                 CALL    TIEMPO
+004D   1286           00099                                 BCF             0X06,5
+004E   1123           00100                                 BCF             Indicador,2
+004F   15A3           00101                                 BSF             Indicador,3
+0050   3000           00102                                 movlw   .0
+0051   0622           00103                                 xorwf   Contador,w
+0052   1D03           00104                                 btfss   0x03,2
+0053   2855           00105                                 goto    deccont
+0054   2819           00106                                 GOTO    DISPONIBILIDAD
+                      00107 
+Message[305]: Using default destination of 1 (file).
+0055   03A2           00108 deccont                 decf    Contador
+0056   2819           00109                                 goto    DISPONIBILIDAD
+                      00110 
+0057                  00111 RETARDO ; Retardo de 2s
+0057   3001           00112                 movlw d'1'
+0058   00A9           00113         movwf CONT4;
+0059   3064           00114 CICLO4  movlw d'100'
+005A   00A8           00115                 movwf CONT3
+005B   3062           00116 CICLO3  movlw d'98'
+005C   00A7           00117                 movwf CONT2
+005D   3043           00118 CICLO2  movlw d'67'
+005E   00A6           00119                 movwf CONT
+005F   0BA6           00120 CICLO   decfsz CONT,1
+0060   285F           00121                 goto CICLO
+0061   0BA7           00122                 decfsz CONT2,1
+0062   285D           00123                 goto CICLO2
+0063   0BA8           00124                 decfsz CONT3,1
+0064   285B           00125                 goto CICLO3
+0065   0BA9           00126                 decfsz CONT4,1
+0066   2859           00127                 goto CICLO4
+0067   0008           00128                 Return
+                      00129 
+                      00130 
+0068   3003           00131 TIEMPO                  MOVLW   .3
+0069   00A4           00132                                 MOVWF   UNSEGUNDO
+006A   206E           00133 REPITE                  CALL    Timer50MS
+006B   0BA4           00134                                 DECFSZ  UNSEGUNDO,F
+006C   286A           00135                                 GOTO    REPITE
+006D   0008           00136                                 RETURN
+006E   303C           00137 Timer50MS               movlw   .60
+006F   0081           00138                                 movwf   0x01
+0070   1D0B           00139 seguir                  btfss   0x0B,2
+0071   2870           00140                                 goto    seguir
+0072   110B           00141                                 bcf             0x0B,2
+MPASM  5.51              PROGRAMAAUTOMATA.ASM   6-6-2017  23:02:52         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0073   0008           00142                                 return
+                      00143                                 END
+MPASM  5.51              PROGRAMAAUTOMATA.ASM   6-6-2017  23:02:52         PAGE  5
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+BAJAPLUMA1                        00000033
+BAJAPLUMA2                        0000004A
+C                                 00000000
+CHECAENTRADA                      00000024
+CHECASALIDA                       0000003B
+CHECASIBAJA1                      0000002A
+CHECASIBAJA2                      00000041
+CHECASISUBE1                      00000027
+CHECASISUBE2                      0000003E
+CICLO                             0000005F
+CICLO2                            0000005D
+CICLO3                            0000005B
+CICLO4                            00000059
+CONT                              00000026
+CONT2                             00000027
+CONT3                             00000028
+CONT4                             00000029
+Contador                          00000022
+DC                                00000001
+DISPONIBILIDAD                    00000019
+DISPONIBLES                       0000001E
+EEADR                             00000009
+EECON1                            00000088
+EECON2                            00000089
+EEDATA                            00000008
+EEIE                              00000006
+EEIF                              00000004
+F                                 00000001
+FSR                               00000004
+GIE                               00000007
+INDF                              00000000
+INICIO                            00000006
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+Indicador                         00000023
+NODISPONIBLES                     00000021
+NOT_PD                            00000003
+NOT_RBPU                          00000007
+NOT_TO                            00000004
+OPTION_REG                        00000081
+PCL                               00000002
+PCLATH                            0000000A
+PORTA                             00000005
+PORTB                             00000006
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+RA0                               00000000
+RA1                               00000001
+MPASM  5.51              PROGRAMAAUTOMATA.ASM   6-6-2017  23:02:52         PAGE  6
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+RBIF                              00000000
+RD                                00000000
+REPITE                            0000006A
+RETARDO                           00000057
+RP0                               00000005
+RP1                               00000006
+STATUS                            00000003
+SUBEPLUMA1                        0000002D
+SUBEPLUMA2                        00000044
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+TIEMPO                            00000068
+TMR0                              00000001
+TMR0IE                            00000005
+TMR0IF                            00000002
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISB                             00000086
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+Timer50MS                         0000006E
+UNSEGUNDO                         00000024
+W                                 00000000
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+Z                                 00000002
+_CONFIG                           00002007
+_CP_OFF                           00003FFF
+MPASM  5.51              PROGRAMAAUTOMATA.ASM   6-6-2017  23:02:52         PAGE  7
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_CP_ON                            0000000F
+_FOSC_EXTRC                       00003FFF
+_FOSC_HS                          00003FFE
+_FOSC_LP                          00003FFC
+_FOSC_XT                          00003FFD
+_HS_OSC                           00003FFE
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_LP_OSC                           00003FFC
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+_WDTE_OFF                         00003FFB
+_WDTE_ON                          00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_XT_OSC                           00003FFD
+__16F84A                          00000001
+__DEBUG                           1
+deccont                           00000055
+seguir                            00000070
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : X-----XXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0040 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXX------------
+2000 : -------X-------- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:   111
+Program Memory Words Free:   913
+
+
+Errors   :     0
+Warnings :     6 reported,     0 suppressed
+Messages :     3 reported,     0 suppressed
+
+
